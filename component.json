@@ -1,0 +1,17 @@
+{
+  "name": "ruler",
+  "version": "0.0.1",
+  "description": "composable assertions",
+  "main": "index.js",
+  "dependencies": {
+    "component/to-function": "1.1.1"
+  },
+  "scripts": [
+    "index.js",
+    "lib/ruler.js",
+    "lib/comparators.js"
+  ],
+  "repository": "git@github.com:redventures/ruler",
+  "author": "Garrett Johnson",
+  "license": "Apache, Version 2.0"
+}

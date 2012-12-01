@@ -1,0 +1,22 @@
+{
+  "name": "ruler",
+  "version": "0.0.1",
+  "description": "composable assertions",
+  "author": "Garrett Johnson",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:redventures/ruler"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "to-function": "1.1.1"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "license": "Apache, Version 2.0"
+}
