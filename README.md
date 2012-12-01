@@ -91,7 +91,7 @@ var names = ruler()
   .is('name.first', 'john')
   .not('name.last', 'buzz')
 
-var info = rule()
+var info = ruler()
   .contains('company', 'red')
   .gte('age', 21);
 
@@ -114,12 +114,12 @@ assert.equal(result, true);
 You can plugin custom "comparators" if the baked in one's do not fit your needs.
 
 ```javascript
-function double(actual, total){
+function doubled(actual, total){
   return (actual * 2) == total;
 }
 
 var engine = ruler()
-  .use(double, 'price', 40);
+  .use(doubled, 'price', 40);
 
 engine.test({
   price: 20
