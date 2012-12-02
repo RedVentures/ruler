@@ -1,5 +1,7 @@
 
-var ruler = require('..');
+var ruler = require('..')
+  , assert = require('assert');
+;
 
 describe('.ruler(arr)', function(){
   describe('when initialized with key/val rules', function(){
