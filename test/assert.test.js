@@ -1,47 +1,13 @@
+/**
+ * Test the ruler.assert method functionality.
+ *
+ * @author James Huston
+ * @since 2012-12-02
+ */
 
 var ruler = require('..')
   , assert = require('assert');
 ;
-
-describe('.ruler(arr)', function(){
-  describe('when initialized with key/val rules', function(){
-    it('should build the stack', function(){
-      var rules = [
-        { cmp: 'is', path: 'name.first', value: 'john' },
-        { cmp: 'is', path: 'name.last', value: 'doe' }
-      ];
-
-      var obj = {
-        name: { first: 'john', last: 'doe' }
-      };
-
-      var engine = ruler(rules);
-      var result = engine.test(obj);
-
-      engine.stack.should.have.length(2);
-      result.should.equal(true);
-    });
-  });
-});
-
-describe('.ruler()', function(){
-  describe('when chaining with the API', function(){
-    it('should build up the filters', function(){
-      var engine = ruler()
-        .is('name.first', 'john')
-        .is('name.last', 'doe')
-        .contains('email', 'gmail');
-
-      var result = engine.test({
-        name: { first: 'john', last: 'doe' },
-        email: 'john+doe@gmail.com'
-      });
-
-      engine.stack.should.have.length(3);
-      result.should.equal(true);
-    });
-  });
-});
 
 describe('.ruler().assert(path)', function(){
   describe('on first assert chain', function(){
@@ -51,7 +17,7 @@ describe('.ruler().assert(path)', function(){
     it('should have an assertStack of length 1', function() {
       engine.assertStack.should.have.length(1);
     });
-  
+
     it('should have the first element of type ruler', function() {
       engine.assertStack[0].should.be.an.instanceof(ruler);
     });
@@ -108,6 +74,31 @@ describe('.ruler().assert(path)', function(){
       result.should.equal(true);
     });
   });
+
+  describe('single assert with chained gt and lt test', function() {
+    var engine = ruler()
+      .assert('age').gt(20).lt(30);
+
+    describe('passing test', function() {
+      var result = engine.test({
+        age: 25
+      });
+
+      it('should be true', function() {
+        result.should.equal(true);
+      });
+    });
+
+    describe('failing test', function() {
+      var result = engine.test({
+        age: 45
+      });
+
+      it('should be false', function() {
+        result.should.equal(false);
+      });
+    });
+  });
 });
 
 describe('.ruler().assert(path).is()', function(){
@@ -133,7 +124,7 @@ describe('.ruler().flattenStacks', function() {
 
       engine.flattenStacks();
     });
- 
+
     it('maintained the stack on the child', function() {
       engine.assertStack[0].stack.should.have.length(1);
       engine.assertStack[0].stack[0].should.be.a('function');
