@@ -22,11 +22,7 @@ var ruler = require('ruler')
 
 // initialize
 
-var engine = ruler();
-
-// describe rules
-
-engine
+var engine = ruler()
   .rule('name.first')
     .eq('john')
   .rule('name.last')
@@ -35,7 +31,8 @@ engine
     .contains('red')
   .rule('number')
     .gte(0)
-    .lte(100);
+    .lte(100)
+  .end();
 
 // rests an object against the "rule set"
 
@@ -62,7 +59,7 @@ var obj = {
     first: 'john',
     last: 'doe'
   },
-  age: 21,
+  number: 100,
   company: 'redventures'
 };
 
@@ -70,7 +67,7 @@ var filters = [
   { cmp: 'is', path: 'name.first', value: 'john' },
   { cmp: 'not', path: 'name.last', value: 'buzz' },
   { cmp: 'contains', path: 'company', value: 'red' },
-  { cmp: 'gte', path: 'age', value: 21 }
+  { cmp: 'gte', path: 'number', value: 75 }
 ];
 
 var engine = ruler(filters);
@@ -89,18 +86,19 @@ var ruler = require('ruler')
 // name rules
 
 var names = ruler();
-
-names
-  .is('name.first', 'john')
-  .not('name.last', 'buzz')
+  .rule('name.first')
+    .eq('john')
+  .rule('name.last')
+    .neq'buzz');
+  .end();
 
 // info rules
 
-var info = ruler();
-
-info
-  .contains('company', 'red')
-  .gte('age', 21);
+var info = ruler()
+  .rule('company')
+    .contains(red')
+  .rule('number')
+    .gte(50);
 
 // compose "name" and "info" together
 
@@ -113,7 +111,7 @@ var result = all.test({
     first: 'john',
     last: 'doe'
   },
-  age: 21,
+  number: 75,
   company: 'redventures'
 });
 

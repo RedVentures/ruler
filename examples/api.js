@@ -13,7 +13,8 @@ var engine = ruler()
     .contains('red')
   .rule('age')
     .gte(21)
-    .lte(31);
+    .lte(31)
+  .end();
 
 // test it
 

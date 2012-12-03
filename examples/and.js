@@ -2,24 +2,23 @@
 var ruler = require('..')
   , assert = require('assert');
 
-var names = ruler();
-var info = ruler();
-
 // names
 
-names
+var names = ruler()
   .rule('name.first')
     .eq('john')
   .rule('name.last')
-    .eq('buzz');
+    .neq('buzz')
+  .end();
 
 // info
 
-info
+var info = ruler()
   .rule('company')
     .contains('red')
   .rule('age')
-    .eq(21);
+    .eq(21)
+  .end();
 
 // compose an "all" ruler
 
