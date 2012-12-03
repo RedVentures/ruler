@@ -1,7 +1,8 @@
 
 var ruler = require('..');
 
-describe('.ruler(arr)', function(){
+describe('Ruler', function(){
+
   describe('when initialized with key/val rules', function(){
     it('should build the rules', function(){
       var rules = [
@@ -20,11 +21,9 @@ describe('.ruler(arr)', function(){
       result.should.equal(true);
     });
   });
-});
 
-describe('.ruler()', function(){
-  describe('when chaining with the API', function(){
-    it('should build up the filters', function(){
+  describe('when chaining new rules', function(){
+    it('should build up rule stack', function(){
       var engine = ruler();
 
       engine
@@ -44,4 +43,5 @@ describe('.ruler()', function(){
       result.should.equal(true);
     });
   });
+  
 });
