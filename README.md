@@ -10,23 +10,9 @@ composable object testing
 npm install ruler
 ```
 
-## Features
-  - simple implementation, < 100 lines of code.
-  - built-in comparisons
-    - eq
-    - neq
-    - contains
-    - matches
-    - gt
-    - gte
-    - lt
-    - lte
-  - extendable (see [plugins](#plugins))
-  - composable (see [composition](#composable))
-
 ## Usage
 
-ruler is meant for just simple, top-down testing; there is not need or desire to have a nested trees of "child" conditions, etc. You can build your tests via progamatically, or an array of objects with `cmp`, `path` and `value` properties. The later of the two is ugly, but might be handy if you need to store the "rules" in a database or something.
+Ruler is meant for just simple, top-down testing; there is not need or desire to have a nested trees of "child" conditions, etc. You can build your tests via progamatically, or an array of objects with `cmp`, `path` and `value` properties. The later of the two is ugly, but might be handy if you need to store the "rules" in a database or something.
 
 *Build assertions programatically:*
 
@@ -34,18 +20,31 @@ ruler is meant for just simple, top-down testing; there is not need or desire to
 var ruler = require('ruler')
   , assert = require('assert');
 
-var engine = ruler()
-  .is('name.first', 'john')
-  .not('name.last', 'buzz')
-  .contains('company', 'red')
-  .gte('age', 21);
+// initialize
+
+var engine = ruler();
+
+// describe rules
+
+engine
+  .rule('name.first')
+    .eq('john')
+  .rule('name.last')
+    .neq('buzz')
+  .rule('company')
+    .contains('red')
+  .rule('number')
+    .gte(0)
+    .lte(100);
+
+// rests an object against the "rule set"
 
 var result = engine.test({
   name: {
     first: 'john',
     last: 'doe'
   },
-  age: 21,
+  number: 50,
   company: 'redventures'
 });
 
@@ -87,15 +86,27 @@ Rules sets can be created seperately for their own use, but then composed togeth
 var ruler = require('ruler')
   , assert = require('assert');
 
-var names = ruler()
+// name rules
+
+var names = ruler();
+
+names
   .is('name.first', 'john')
   .not('name.last', 'buzz')
 
-var info = ruler()
+// info rules
+
+var info = ruler();
+
+info
   .contains('company', 'red')
   .gte('age', 21);
 
+// compose "name" and "info" together
+
 var all = names.and(info);
+
+// test object against the "rule set"
 
 var result = all.test({
   name: {
@@ -109,28 +120,10 @@ var result = all.test({
 assert.equal(result, true);
 ```
 
-## Plugins
-
-You can plugin custom "comparators" if the baked in one's do not fit your needs.
-
-```javascript
-function doubled(actual, total){
-  return (actual * 2) == total;
-}
-
-var engine = ruler()
-  .use(doubled, 'price', 40);
-
-engine.test({
-  price: 20
-});
-```
-
 ## TODO
 
   - optimize, `every()` is probably slow.
   - "works" with component, but uses bunch of ES5 stuff...
-  - more built-in comparators?
 
 
 ## License
