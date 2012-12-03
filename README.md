@@ -96,7 +96,7 @@ var names = ruler();
 
 var info = ruler()
   .rule('company')
-    .contains(red')
+    .contains('red')
   .rule('number')
     .gte(50);
 
