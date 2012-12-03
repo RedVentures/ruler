@@ -2,15 +2,30 @@
 var ruler = require('..')
   , assert = require('assert');
 
-var names = ruler()
-  .is('name.first', 'john')
-  .not('name.last', 'buzz');
+var names = ruler();
+var info = ruler();
 
-var info = ruler()
-  .contains('company', 'red')
-  .gte('age', 21);
+// names
+
+names
+  .rule('name.first')
+    .eq('john')
+  .rule('name.last')
+    .eq('buzz');
+
+// info
+
+info
+  .rule('company')
+    .contains('red')
+  .rule('age')
+    .eq(21);
+
+// compose an "all" ruler
 
 var all = names.and(info);
+
+// results
 
 var result = all.test({
   name: {

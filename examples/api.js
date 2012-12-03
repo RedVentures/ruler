@@ -2,6 +2,8 @@
 var ruler = require('..')
   , assert = require('assert');
 
+// chain up rules
+
 var engine = ruler()
   .rule('name.first')
     .eq('john')
@@ -12,6 +14,8 @@ var engine = ruler()
   .rule('age')
     .gte(21)
     .lte(31);
+
+// test it
 
 var result = engine.test({
   name: {

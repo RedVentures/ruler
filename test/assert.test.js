@@ -1,13 +1,5 @@
-/**
- * Test the ruler.assert method functionality.
- *
- * @author James Huston
- * @since 2012-12-02
- */
-
 var ruler = require('..')
   , assert = require('assert');
-;
 
 describe('.ruler().assert(path)', function(){
   describe('on first assert chain', function(){

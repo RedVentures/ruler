@@ -12,8 +12,8 @@ var obj = {
 };
 
 var rules = [
-  { cmp: 'is', path: 'name.first', value: 'john' },
-  { cmp: 'not', path: 'name.last', value: 'buzz' },
+  { cmp: 'eq', path: 'name.first', value: 'john' },
+  { cmp: 'neq', path: 'name.last', value: 'buzz' },
   { cmp: 'contains', path: 'company', value: 'red' },
   { cmp: 'gte', path: 'age', value: 21 }
 ];
