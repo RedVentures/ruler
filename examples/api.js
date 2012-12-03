@@ -3,10 +3,15 @@ var ruler = require('..')
   , assert = require('assert');
 
 var engine = ruler()
-  .is('name.first', 'john')
-  .not('name.last', 'buzz')
-  .contains('company', 'red')
-  .gte('age', 21);
+  .rule('name.first')
+    .eq('john')
+  .rule('name.last')
+    .eq('doe')
+  .rule('company')
+    .contains('red')
+  .rule('age')
+    .gte(21)
+    .lte(31);
 
 var result = engine.test({
   name: {
