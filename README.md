@@ -12,7 +12,7 @@ npm install ruler
 
 ## Usage
 
-Ruler is meant for just simple, top-down testing; there is not need or desire to have a nested trees of "child" conditions, etc. You can build your tests via progamatically, or an array of objects with `cmp`, `path` and `value` properties. The later of the two is ugly, but might be handy if you need to store the "rules" in a database or something.
+Ruler is meant for just simple, top-down testing; there is not need or desire to have a nested trees of "child" conditions, etc. You can build your tests via progamatically, or an array of objects with `comparator`, `path` and `value` properties. The later of the two is ugly, but might be handy if you need to store the "rules" in a database or something.
 
 *Build assertions programatically:*
 
@@ -64,10 +64,10 @@ var obj = {
 };
 
 var filters = [
-  { cmp: 'is', path: 'name.first', value: 'john' },
-  { cmp: 'not', path: 'name.last', value: 'buzz' },
-  { cmp: 'contains', path: 'company', value: 'red' },
-  { cmp: 'gte', path: 'number', value: 75 }
+  { comparator: 'is', path: 'name.first', value: 'john' },
+  { comparator: 'not', path: 'name.last', value: 'buzz' },
+  { comparator: 'contains', path: 'company', value: 'red' },
+  { comparator: 'gte', path: 'number', value: 75 }
 ];
 
 var engine = ruler(filters);
