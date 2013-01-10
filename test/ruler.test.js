@@ -6,8 +6,8 @@ describe('Ruler', function(){
   describe('when initialized with key/val rules', function(){
     it('should build the rules', function(){
       var rules = [
-        { cmp: 'eq', path: 'name.first', value: 'john' },
-        { cmp: 'eq', path: 'name.last', value: 'doe' }
+        { comparator: 'eq', path: 'name.first', value: 'john' },
+        { comparator: 'eq', path: 'name.last', value: 'doe' }
       ];
 
       var obj = {

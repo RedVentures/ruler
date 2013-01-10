@@ -74,6 +74,12 @@ describe('Rule', function(){
         rule.matches(/^wor.+/);
         rule.test({ hello: 'world' }).should.equal(true);
       });
+
+      it('should match regex strings', function(){
+        var rule = new Rule('hello');
+        rule.matches('^wor.+');
+        rule.test({ hello: 'world' }).should.equal(true);
+      });
     });
   });
 
