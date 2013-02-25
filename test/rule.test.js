@@ -93,4 +93,12 @@ describe('Rule', function(){
     });
   });
 
+  describe('undefined contexts', function(){
+    it('should not throw an exception', function(){
+      var rule = new Rule('name');
+      rule.eq('hai');
+      rule.test().should.equal(false);
+    });
+  });
+
 });
