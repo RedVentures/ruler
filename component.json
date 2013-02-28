@@ -4,7 +4,7 @@
   "description": "composable assertions",
   "main": "index.js",
   "dependencies": {
-    "component/to-function": "1.1.1"
+    "gjohnson/pluck": "0.0.3"
   },
   "scripts": [
     "index.js",
