@@ -2,15 +2,6 @@ var Rule = require('../lib/rule');
 
 describe('Rule', function(){
 
-  describe('when initialized', function(){
-    it('should create a path look up function', function(){
-      var rule = new Rule('name');
-      var obj = { name: 'hai' };
-      rule.path.should.be.a('function');
-      rule.path(obj).should.equal('hai');
-    });
-  });
-
   describe('when defining comparators', function(){
     describe('eq', function(){
       it('should strictly equal', function(){
