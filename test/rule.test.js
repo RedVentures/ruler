@@ -1,4 +1,4 @@
-var Rule = require('../lib/rule');
+var Rule = require('..').Rule;
 
 describe('Rule', function(){
 

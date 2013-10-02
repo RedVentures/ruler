@@ -2,3 +2,5 @@ node_modules
 components
 build
 nbproject
+coverage.html
+lib-cov
