@@ -72,6 +72,14 @@ describe('Rule', function(){
         rule.test({ hello: 'world' }).should.equal(true);
       });
     });
+
+    describe('exists', function(){
+      it('should fail when null or undefined', function () {
+        var rule = new Rule('visited');
+        rule.exists();
+        rule.test({ visited: 'hi' }).should.equal(true);
+      });
+    });
   });
 
   describe('when chaining multiple comparators', function(){
