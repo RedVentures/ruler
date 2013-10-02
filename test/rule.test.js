@@ -27,6 +27,14 @@ describe('Rule', function(){
       });
     });
 
+    describe('ncontains', function(){
+      it('should not contain', function(){
+        var rule = new Rule('world').ncontains('up');
+        var result = rule.test({ world: 'stuff' });
+        result.should.equal(true);
+      });
+    });
+
     describe('gte', function(){
       it('should be greater than or equal to', function(){
         var rule = new Rule('number').gte(100);
@@ -74,12 +82,37 @@ describe('Rule', function(){
     });
 
     describe('exists', function(){
-      it('should fail when null or undefined', function () {
+      it('should exsist', function(){
         var rule = new Rule('visited');
         rule.exists();
-        rule.test({ visited: 'hi' }).should.equal(true);
+        rule.test({ visited: 'apple' }).should.equal(true);
       });
     });
+
+    describe('nexists', function(){
+      it('should not exist', function(){
+        var rule = new Rule('visited');
+        rule.nexists();
+        rule.test({}).should.equal(true);
+      });
+    });
+
+    describe('is', function(){
+      it('should test equality strictly', function(){
+        var rule = new Rule('something');
+        rule.is(undefined);
+        rule.test({ something: null }).should.equal(false);
+      });
+    });
+
+    describe('not', function(){
+      it('should test equality strictly (negated)', function(){
+        var rule = new Rule('something');
+        rule.not(undefined);
+        rule.test({ something: null }).should.equal(true);
+      });
+    });
+
   });
 
   describe('when chaining multiple comparators', function(){
