@@ -9,7 +9,7 @@
   "scripts": [
     "index.js",
     "lib/ruler.js",
-    "lib/rule.js"
+    "lib/rule.js",
     "lib/comparators.js"
   ],
   "repository": "git@github.com:redventures/ruler",
